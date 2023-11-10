@@ -1,0 +1,5 @@
+__pycache__/
+venv/
+main
+*.pyc
+techjays_intern_expensetracker/techjays_intern_expensetracker/settings.py
