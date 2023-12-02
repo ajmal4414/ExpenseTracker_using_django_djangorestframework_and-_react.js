@@ -130,20 +130,3 @@ export default Dashboard
 
 
 
-
-
-    // {/* <Link to ='Sign-up'>Signup</Link>
-    // <br></br><br></br>
-    // <Link to ='Sign-in'>Sign-in</Link>
-    // <Link to ='Add-expense'>AddExpense</Link>
-    // <br></br>
-    // <Link to ='Expense-History'>ExpenseHistory</Link>
-
-    // <br></br>
-
-    // <Link to ='Edit-Expense'>EditExpense</Link> */}
-
-    // {/* <Link to ='Bar-chart'>BarChart</Link> */}
-    // {/* <Link to ='Google-pie-chart'>GooglePieChart</Link> */}
-   
- 
