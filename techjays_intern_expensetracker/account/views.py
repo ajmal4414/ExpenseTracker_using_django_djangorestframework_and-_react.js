@@ -20,6 +20,16 @@ from django.urls import reverse
 from django.utils.http import urlsafe_base64_encode
 # import logging
 
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.response import Response
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.tokens import default_token_generator
+from .serializers import PasswordResetSerializer
+
 # Create your views here.
 
 import logging
@@ -44,24 +54,13 @@ class CustomUserCreate(APIView):
             return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework.response import Response
 
-
-
-from rest_framework_simplejwt.views import TokenObtainPairView
-# from .serializers import MyTokenObtainPairSerializer
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
     
 
-from django.contrib.sites.shortcuts import get_current_site
-from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth.tokens import default_token_generator
-from .serializers import PasswordResetSerializer
 
 User = get_user_model()
 
