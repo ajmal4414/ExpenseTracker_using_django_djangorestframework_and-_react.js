@@ -1,10 +1,9 @@
 import React from 'react'
-// import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import GooglePieChart from '../Charts/PieChart';
 import GoogleBarChart from '../Charts/GoogleBarChart'
 import Table from '../Tables/Table';
-// import BarChart from './BarChart/BarChart';
+
 
 
 
