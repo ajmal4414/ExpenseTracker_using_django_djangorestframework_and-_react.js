@@ -7,47 +7,13 @@ import SupportIcon from '@mui/icons-material/Support';
 import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
 import ShareIcon from '@mui/icons-material/Share';
 import LanguageIcon from '@mui/icons-material/Language';
-// function NavBar() {
-//     const Container = styled.div`
-//     width:100%;`
-//     height: 12vh;
-//     display:flex;
-//     align-items:center;
-//     background-color:black;
-//     color:white;
-//     box-shadow: 5px 6px 7px gray;
-//    `;
-
-//     const Wrapper =styled.div`  
-//       width:95;
-//       height:relative;
-//       background-image:black;
-//       display:grid;
-//       grid-template-columns:50% 50%;
-//     `;
-
-//     const FirstContainer = styled.div`
-//       display: flex;
-//       margin-left:20px;
-//       align-items:center;
-//     `;
-//     const IconContainer = styled.div`
-//          width:fit-content;
-//          padding:2px;
-//          background-color:#fff;
-//          border-radius:50%;
-//          display:flex;
-//          align-items:center;
-//          justify-content:center;
-//     `;
-//     const Icon =styled.img`
-//         width:relative;
-//         height:10vh;
-//     `;
+import { Link } from 'react-router-dom';
 
 
 
- function NavBar() {
+
+
+
 
 const Container = styled.div`
   width: 100%;
@@ -108,7 +74,9 @@ const Item =styled.div`
   `;
 const HelpIcon= styled.div``;
 const HelpDesc =styled.div `
-  margin-left:15px;
+  ${'' /* margin-left:10px;
+  font-size: 1rem;
+  cursor: pointer; */}
 
 `;
 const FirstMenuContainer = styled.div`
@@ -125,36 +93,7 @@ margin-left: 10%;
 
 
 
-
-//   return (
-//     <Container>
-//     <Wrapper>
-//     <FirstContainer>
-//     <IconContainer>
-//     <Icon src={Expenselogo}/>
-//     </IconContainer>
-//     <IconDesc>Expense Tracker</IconDesc>
-//     </FirstContainer>
-//     <FirstContainer>
-//     <Item>
-//     <HelpIcon ><SupportIcon/></HelpIcon>
-
-//     <HelpDesc>Help?</HelpDesc>
-//     </Item>
-//     <Item>
-        
-//     </Item>
-// </FirstContainer>
-
-
-//     </Wrapper>
-//     </Container>
-//   )
-// }
-
-// export default NavBar
-
-
+ function NavBar() {
 
 return (
     <Container>
@@ -163,15 +102,17 @@ return (
           <IconContainer>
             <Icon src={Expenselogo} alt="Expense Logo" />
           </IconContainer>
-          <IconDesc>Expense Tracker</IconDesc>
+          <IconDesc>Money Tracker</IconDesc>
           <FirstMenuContainer>
             <Item>
               <HelpIcon><SupportIcon /></HelpIcon>
               <HelpDesc>Help?</HelpDesc>
             </Item>
             <Item>
+            <Link to="/Aboutus">  </Link>
               <HelpIcon><DocumentScannerIcon /></HelpIcon>
-              <HelpDesc>About us</HelpDesc>
+              <HelpDesc >About us</HelpDesc>
+            
             </Item>
             <Item>
               <HelpIcon></HelpIcon>

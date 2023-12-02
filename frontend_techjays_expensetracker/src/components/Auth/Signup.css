@@ -1,0 +1,433 @@
+/* .signup-container{
+    max-width: 300px;
+    margin: auto;
+    padding: 20px;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    background-color: #dfcae7;
+   
+} */
+
+
+/* .signup-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  input[type='text'],
+  input[type='password'] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  } */
+
+
+
+/* 
+  .container {
+    width: 100%;
+  }
+  
+  .secondContainer {
+    width: 700px;
+    height: fit-content;
+    padding: 60px;
+    
+  }
+  .wrapper {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    border: 2px solid black;
+    border-radius: 20px;
+    box-shadow: 8px 8px 30px #888888;;
+  }
+  .HeaderContainer {
+    width: 100%;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  img {
+    width: 150px;
+  }
+  .hedding1{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  
+  .input1{
+    width: 80%;
+    padding: 10px;
+    border-radius: 20px;
+    margin: 20px;
+     box-shadow: 5px 5px 10px #888888;;
+  }
+  .input1:hover{
+    background-color: lightgray;
+  }
+  .buttonContainer {
+    width: inherit;
+    padding: 20px;
+   
+    display: flex;
+    align-items: end;
+    justify-content: end;
+  }
+  .red1{
+      padding: 10px;
+      border: none;
+      border-radius: 20px;
+      font-size: 20px;
+      font-weight: 600;
+      color: white;
+      margin-right: 20%;
+      background-color: rgb(26, 18, 238);
+      box-shadow: 7px 5px 10px #888888;
+  }
+  .button-signup{
+    background-color:var(--color-green);
+    padding: 20px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+  } 
+  .button-signup:hover{
+      background-color: rgb(142, 197, 90);
+      
+    }   */
+
+/* 
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .secondContainer {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px;
+      box-sizing: border-box;
+    }
+    
+    .wrapper {
+      width: 100%;
+      background-color: #fff; /* Changed to white background */
+      /* display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      border: 2px solid #333;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .HeaderContainer {
+      width: 100%;
+      background-color: #ff5733;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px; /* Reduced padding for a cleaner look */
+    /* } */
+    
+    /* img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .hedding1 {
+      text-align: center;
+    }
+    
+    .input1 {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #333;
+      border-radius: 20px;
+      margin: 20px 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    /* } */
+
+
+
+
+/*     
+    
+   .container {
+ max-width: 800px;
+  margin: 0 auto;
+}
+
+.secondContainer {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #333;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease; /* Added transition for smooth movement */
+
+
+/* .wrapper:hover {
+  transform: translateY(-5px); /* Move the form 5px up on hover */
+/* }
+
+.HeaderContainer {
+  width: 100%;
+  background-color: #ff5733;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.img {
+  max-width: 100%;
+  height: auto;
+}
+
+.hedding1 {
+  text-align: center;
+}
+
+.input1 {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #333;
+  border-radius: 15px;
+  margin: 15px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.input1:hover {
+  background-color: #f0f0f0;
+}
+
+.buttonContainer {
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.red1 {
+  padding: 12px;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  margin-right: 5%;
+  background-color: #1a12ee;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button-signup {
+  background-color: #4c93af;
+  padding: 12px 24px;
+  border-radius: 15px;
+  color: white;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-signup:hover {
+  background-color: #5aa3c5;
+} */ */
+
+ */
+
+
+ .container {
+  width: fit-content;
+  margin: 0 auto; /* Center the container horizontally */
+
+}
+
+/* .input1::placeholder { */
+  /* font-size: 200px; } Adjust the font size to your preference */
+  /* You can add other styles as needed */
+ 
+/* If you want to target specific elements within the form */
+.container input {
+  font-size: 15px; /* Adjust the font size to your preference */
+}
+
+/* You can also target other form elements like labels or buttons if needed */
+.container label {
+  font-size: 10px; /* Adjust the font size to your preference */
+}
+
+/* .container button { */
+  /* font-size: 5px; Adjust the font size to your preference */
+/* } */
+
+.secondContainer {
+  width: fit-content; /* Adjusted to fit content */
+  /* font-size: 30 */
+  max-width: 400px;   /*Set a maximum width
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 5px; /* Adjusted padding for a more compact form */
+  box-sizing: border-box;
+  max-height: 50px; /* Set a maximum height */
+  /* overflow: hidden; */
+  
+}
+
+
+.input1::placeholder {
+  font-size: 14px; /* Adjust the font size to your preference */
+  color: #888; /* Adjust the color to your preference */
+  /* You can add other styles as needed */
+}
+.wrapper {
+  width: fit-content; /* Adjusted to fit content */
+  /* max-width: 300px; Set a maximum width */
+  /* max-height: ; */
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px; /* Adjusted padding for a more compact form */
+  border: 1px solid #333;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease; /* Added transition for smooth movement */
+  max-height: 475px;
+}
+.link-hover:hover {
+  margin-top: -3px; /* Move the text 3px upward on hover */
+}
+
+.wrapper:hover {
+  transform: translateY(-5px); /* Move the form 5px up on hover */
+}
+
+.HeaderContainer {
+  width: 100%;
+  background-color: #ff5733;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.img {
+  max-width: 100%;
+  height: auto;
+}
+
+.hedding1 {
+  text-align: center;
+  padding: 1px;
+  max-height: -3px;
+}
+
+.input1 {
+  font-size: 5px;
+  width: 80%; /* Adjusted width */
+  padding: 5px; /* Adjusted padding for a more compact input field */
+  border-radius: 5px; /* Adjusted border-radius */
+  margin: 3px 0; /* Adjusted margin for better spacing */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.input1:hover {
+  background-color: #f0f0f0;
+}
+
+.buttonContainer {
+  width: 100%;
+  padding: 5px; /* Adjusted padding for a more compact form */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.red1 {
+  padding: 10px; /* Adjusted padding for a more compact form */
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  margin-right: 5%;
+  background-color: #1a12ee;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button-signup {
+  background-color: #4c93af;
+  padding: 10px 20px; /* Adjusted padding for a more compact button */
+  border-radius: 15px;
+  color: white;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-signup:hover {
+  background-color: #5aa3c5;
+}
+

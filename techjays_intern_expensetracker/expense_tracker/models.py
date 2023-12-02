@@ -1,15 +1,6 @@
-# from django.db import models
+from django.db import models
 from djongo import models
 from django.core.validators import MinValueValidator
-# from django.utils import timezone
-
-
-
-# from expense_tracker.models import Expense
-
-# Create your models here.
-
-
 
 
 

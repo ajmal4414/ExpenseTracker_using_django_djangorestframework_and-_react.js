@@ -1,0 +1,14 @@
+#.gitignore
+
+
+.env
+.venv
+.db
+.djongo
+.requirements.txt
+__pycache__
+
+main
+*.pyc
+*.pyo
+*.pyd

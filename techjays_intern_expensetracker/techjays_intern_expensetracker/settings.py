@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from decouple import config, Csv
 from pathlib import Path
 from datetime import timedelta
 
@@ -23,12 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+9%7%eb(omu4@n*dwjt_x(=#4qdq^7u$!f$w(m$*k6(ezk2@*8'
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = config('DEBUG', default=False, cast=bool)
 DEBUG = True
-
 ALLOWED_HOSTS = []
+
+
 
 
 # Application definition
@@ -40,10 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
     "account",
     "expense_tracker",
-    
     'rest_framework',
     'django_filters',
     "corsheaders",
@@ -100,15 +102,10 @@ WSGI_APPLICATION = 'techjays_intern_expensetracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        # 'ENFORCE_SCHEMA': False,
         'NAME':  'expensedatabase',
-        
-           
         "HOST":'localhost',
         'PORT':'27017',
-        # 'CLIENT': {
-        #     'host': 'localhost',
-        #     'port': 27017,
+     
 
     },
 }
@@ -176,52 +173,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_CREDENTIALS = True
 
 
-# Whitelisting React Port
-# CORS_ORIGINS_WHITELIST=[
-#     'http://localhost:3000',
-#     # 'http://192.168.1.5:3000',
-#     'http://127.0.0.1:8000',
-# ]
-
 CORS_ALLOWED_ORIGINS=[
     "http://localhost:3000"
 ]
 
-# CORS_URLS_REGEX = r'^/api/lists/$'
 
-# auth
-# CORS_ALLOW_CREDENTIALS = True
-
-
-# This setting allows all HTTP methods by default. Adjust it as needed.
-# CORS_ALLOW_METHODS = [
-#     'DELETE',
-#     'GET',
-#     'OPTIONS',
-#     'PATCH',
-#     'POST',
-#     'PUT',
-# ]
-
-
-
-# CORS_ALLOW_HEADERS = [
-#     'accept',
-#     'accept-encoding',
-#     'authorization',
-#     'content-type',
-#     'dnt',
-#     'origin',
-#     'user-agent',
-#     'x-csrftoken',
-#     'x-requested-with',
-# ]
-# CORS_ALLOW_HEADERS = [
-#     'Content-Type',
-#     'Authorization',
-#     'X-CSRFToken',
-# ]
-# CORS_EXPOSE_HEADERS = ['X-Custom-Header']
 
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -241,7 +197,7 @@ MONGO_DATABASE_NAME = 'expensedatabase'
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-    "ROTATE_REFRESH_TOKENS": False,
+    "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
     
 
@@ -276,5 +232,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 
 # Your Gmail email address and password
-EMAIL_HOST_USER = 'ajmals342ss@gmail.com'
-EMAIL_HOST_PASSWORD = 'tyfv whlm gbjb pfpl'  
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')

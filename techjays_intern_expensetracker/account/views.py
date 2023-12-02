@@ -1,7 +1,5 @@
 from django.shortcuts import render
-from .serializers import RegisterUserSerializer
-
-
+from .serializers import RegisterUserSerializer,UserSerializer,CustomTokenObtainPairSerializer
 from rest_framework import status,generics,viewsets,response
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -74,19 +72,124 @@ class CustomUserCreate(APIView):
 #         else:
 #             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.response import Response
 
 
-class LoginView(TokenObtainPairView):
-    def post(self, request, *args, **kwargs):
-        response = super().post(request, *args, **kwargs)
-        if response.status_code == status.HTTP_200_OK:
-            # Successfully obtained the JWT token
-            token = response.data['access']
-            return Response({'token': token}, status=status.HTTP_200_OK)
-        else:
-            return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
+
+# class MyTokenObtainPairView(TokenObtainPairView):
+#     serializer_class = TokenObtainPairSerializer
+
+#     def post(self, request, *args, **kwargs):
+#         response = super().post(request, *args, **kwargs)
+#         if response.status_code == status.HTTP_200_OK:
+#             # Successfully obtained the JWT token
+#             token = response.data['access']
+#             # If you also want to include the refresh token, uncomment the line below
+#             # refresh_token = response.data['refresh']
+#             return Response({'token': token}, status=status.HTTP_200_OK)
+#         else:
+#             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+
+# class LoginView(TokenObtainPairView):
+    
+#     def post(self, request, *args, **kwargs):
+#         response = super().post(request, *args, **kwargs)
+#         if response.status_code == status.HTTP_200_OK:
+#             # Successfully obtained the JWT token
+#             token = response.data['access']
+#             # token = response.data['refresh']
+#             return Response({'token': token}, status=status.HTTP_200_OK)
+#         else:
+#             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+# from .serializers import UserSerializer
+
+# class LoginView(TokenObtainPairView):
+#     def post(self, request, *args, **kwargs):
+#         response = super().post(request, *args, **kwargs)
+#         if response.status_code == status.HTTP_200_OK:
+#             # Successfully obtained the JWT token
+#             token = response.data['access']
+
+#             # Retrieve user details if the user is authenticated
+#             if request.user.is_authenticated:
+#                 user = request.user
+#                 serializer = UserSerializer(user)
+
+#                 # Include user details in the response
+#                 return Response({'token': token, 'user': serializer.data}, status=status.HTTP_200_OK)
+#             else:
+#                 # Handle the case where the user is not authenticated
+#                 return Response({'token': token, 'user': None}, status=status.HTTP_200_OK)
+#         else:
+#             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+# class LoginView(TokenObtainPairView):
+#     def post(self, request, *args, **kwargs):
+#         response = super().post(request, *args, **kwargs)
+
+#         if response.status_code == status.HTTP_200_OK:
+#             token = response.data['access']
+
+#             # Debug prints
+#             print('Is Authenticated:', request.user.is_authenticated)
+#             print('User:', request.user)
+#             # Retrieve user details if the user is authenticated
+#             if request.user.is_authenticated:
+#                 user = request.user
+#                 serializer = UserSerializer(user)
+
+#                 return Response({'token': token, 'user': serializer.data}, status=status.HTTP_200_OK)
+#             else:
+#                 return Response({'token': token, 'user': None}, status=status.HTTP_200_OK)
+#         else:
+#             print('Invalid credentials. Response:', response.data)
+#             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+# class LoginView(TokenObtainPairView):
+#     permission_classes = [IsAuthenticated]
+#     def post(self, request, *args, **kwargs):
+#         print("User:", request.user)
+#         print("User Permissions:", request.user.get_all_permissions())
+
+#         response = super().post(request, *args, **kwargs)
+#         if response.status_code == status.HTTP_200_OK:
+#             # Successfully obtained the JWT token
+#             access_token = response.data['access']
+#             refresh_token = response.data['refresh']
+
+#             # Retrieve user information
+#             user = request.user  # Assuming you're using the default User model
+#             user_data = {
+#                 'user_name': user.user_name,  # Adjust based on your user model
+#                 # 'email': user.email,
+#                 # 'first_name': user.first_name,
+#                 # 'about': user.about,
+#                 # 'is_staff': user.is_staff,
+#                 # 'is_active': user.is_active,
+#                 # Add other user fields as needed
+#             }
+
+#             return Response({
+#                 'access_token': access_token,
+#                 'refresh_token': refresh_token,
+#                 'user': user_data
+#             }, status=status.HTTP_200_OK)
+#         else:
+#             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+# from path.to.CustomTokenObtainPairSerializer import CustomTokenObtainPairSerializer
+# from .serializers import CustomTokenObtainSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+# from .serializers import MyTokenObtainPairSerializer
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
 
 
 

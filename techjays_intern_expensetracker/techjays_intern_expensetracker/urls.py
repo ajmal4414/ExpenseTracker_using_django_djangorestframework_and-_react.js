@@ -17,30 +17,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
+    # this token edt 2611
+    # TokenObtainPairView,
     TokenRefreshView,
 )
-# from .views import PasswordResetView
-# from first import views
-from expense_tracker import views
-# from rest_framework import routers
-# router=routers.DefaultRouter()
-# router.register(r'lists',views.ExpenseDetailView, 'list')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    # router url
-    # path('api/',include(router.urls)),
     path('account/',include('account.urls')),
-    # path('expense_tracker/',include("expense_tracker.urls")),
-    # path('api/auth//',include('rest_framework.urls')), #frontend restframework
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'), 
+    path('expense_tracker/',include("expense_tracker.urls")),
+   
+    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'), 
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    # path('password-reset/<encoded:pk>/<str:token>/',views.ResetPasswordAPI.as_view(),name='password-reset'),
-    # path('password-reset/',views.PasswordResetView.as_view(),name='request-password-reset'),
     path('password-reset/', include('django.contrib.auth.urls')),
 
-    # coreapi
-    # path('api/',include('core.api.urls')),
+
 ]

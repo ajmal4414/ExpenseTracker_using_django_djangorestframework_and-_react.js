@@ -9,24 +9,20 @@ from django_filters.rest_framework import DjangoFilterBackend
 # from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from .serializers import   ExpenseHistorySerializer,ExpenseEditSerializer, ExpenseSerializer
-# from .serializer import ExpenseSerializer
-# from django.db.models.functions import TruncMonth, TruncYear
 from django.db.models import Sum
-
 from django.utils.decorators import method_decorator
 from bson import json_util
 from django.views.decorators.csrf import csrf_exempt
 from dateutil.relativedelta import relativedelta
 from django.views import View
 from pymongo import MongoClient
-
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework import status
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from rest_framework.permissions import IsAuthenticated
+
 
 # Create your views here.
 
@@ -52,8 +48,7 @@ class ExpenseHistoryView(generics.ListAPIView):
 
 
 
-class ExpenseUpdateView(generics.UpdateAPIView):
-    permission_classes=(IsAuthenticated)
+class ExpenseUpdateView(generics.UpdateAPIView):   
     serializer_class = ExpenseHistorySerializer
     queryset = Expense.objects.all()
     lookup_field = 'pk'
@@ -75,139 +70,60 @@ class ExpenseCreateView(generics.ListCreateAPIView):
     queryset=Expense.objects.all()
 
 
-# class ExpenseDetailView(generics.RetrieveUpdateDestroyAPIView):
-#     permission_classes=[IsAuthenticated]
-#     queryset = Expense.objects.all()
-#     serializer_class = ExpenseSerializer
-
-from rest_framework import viewsets
-from django.shortcuts import get_object_or_404
-
-
-
-
-# class CategoryList(generics.ListCreateAPIView):
-#     queryset = Category.objects.all()
-#     serializer_class = CategorySerializer    
-
-# class ReportsView(APIView):
-#     def get(self, request, format=None):
-#         # Get query parameters
-#         report_type = request.query_params.get('report_type', 'monthly')  # 'monthly' or 'yearly'
-
-#         # Generate report based on the requested type
-#         if report_type == 'monthly':
-#             expenses = Expense.objects.annotate(month=TruncMonth('date')).values('month').annotate(total=Sum('amount')).order_by('month')
-#         elif report_type == 'yearly':
-#             expenses = Expense.objects.annotate(year=TruncYear('date')).values('year').annotate(total=Sum('amount')).order_by('year')
-#         else:
-#             return Response({'error': 'Invalid report type'}, status=400)
-
-#         # Serialize the data
-#         serializer = ExpenseSerializer(expenses, many=True)
-
-#         return Response(serializer.data)
-
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def reports_view(request):
-    report_type = request.GET.get('report_type', 'monthly')
-
-    pipeline = []
-
-    if report_type == 'monthly':
-        pipeline.append({
-            '$group': {
-                '_id': {'year': {'$year': '$date'}, 'month': {'$month': '$date'}},
-                'total': {'$sum': '$amount'},
-            }
-        })
-    elif report_type == 'yearly':
-        pipeline.append({
-            '$group': {
-                '_id': {'year': {'$year': '$date'}},
-                'total': {'$sum': '$amount'},
-            }
-        })
-    else:
-        return Response({'error': 'Invalid report type'}, status=400)
-
-    client = MongoClient('mongodb://localhost:27017')
-    db = client['expensedatabase']
-
-    expenses = list(db.expense.aggregate(pipeline))
-
-    # Serialize the data using DRF serializer
-    serializer = ExpenseSerializer(expenses, many=True)
-
-    return Response(serializer.data)
-
-
-class DashboardView(APIView):
-    def get(self, request):
-        # Connect to the MongoDB server
-        client = MongoClient("mongodb://localhost:27017")  # Replace with your MongoDB connection string
-
-        # Choose the database and collection
-        db = client["expenedatabase"]  # Replace with your MongoDB database name
-        collection = db["expensedatabasecollection"]  # Replace with your MongoDB collection name
-
-        # Calculate the start and end dates for the current month
-        today = datetime.today()
-        start_date = today.replace(day=1)
-        end_date = (start_date + relativedelta(months=1)).replace(day=1)
-
-        # Calculate the total expense for the current month
-        total_expense = collection.aggregate([
-            {
-                "$match": {
-                    "date": {
-                        "$gte": start_date,
-                        "$lt": end_date
-                    }
-                }
-            },
-            {
-                "$group": {
-                    "_id": None,
-                    "total": {
-                        "$sum": "$amount"
-                    }
-                }
-            }
-        ])
-        total_expense = list(total_expense)
-        total_expense = total_expense[0]['total'] if total_expense else 0
-
-        # List recent transactions (e.g., last 5 transactions)
-        recent_transactions = collection.find({"date": {"$lt": end_date}}).sort("date", -1).limit(5)
-        recent_transactions = list(recent_transactions)
-
-        # Close the MongoDB connection
-        client.close()
-
-        dashboard_data = {
-            'total_expense': total_expense,
-            'recent_transactions': recent_transactions,
-        }
-
-        return Response(dashboard_data)
-    
-
-
-from .models import Expense
-from rest_framework import viewsets
-from .serializers import ExpenseSerializer
-
-
-class ExpenseDetailView(viewsets.ModelViewSet):
-    # permission_classes=[IsAuthenticated]
+class ExpenseDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Expense.objects.all()
     serializer_class = ExpenseSerializer
-    # def get_object(self, queryset=None, **kwargs):
-    #     item = self.kwargs.get('pk')
-    #     return get_object_or_404(Expense, slug=item)
 
-    # # Define Custom Queryset
-    # def get_queryset(self):
-    #     return Expense.objects.all()
+
+class ExpenseChartData(APIView):
+    def get(self, request, *args, **kwargs):
+        expenses = Expense.objects.all()
+        serializer = ExpenseSerializer(expenses, many=True)
+
+        # Transform the data as needed for the chart
+        data_for_chart = [
+            {"category": expense["category"], "amount": float(expense["amount"])}
+            for expense in serializer.data
+        ]
+
+        return Response(data_for_chart)    
+
+
+class YearlyReport(APIView):
+    def get(self, request, year):
+        expenses = Expense.objects.filter(date__year=year)
+        serializer = ExpenseSerializer(expenses, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class CategoryReport(APIView):
+    def get(self, request, year, month):
+        try:
+            # Convert year and month to integers
+            year = int(year)
+            month = int(month)
+
+            # Filter expenses for the specified year and month
+            start_date = f"{year:04d}-{month:02d}-01"
+            end_date = f"{year:04d}-{month+1:02d}-01"  # Next month's 1st day
+            expenses = Expense.objects.filter(date__gte=start_date, date__lt=end_date)
+
+            # Group by category and calculate the total amount for each category
+            category_totals = {}
+            for expense in expenses:
+                category = expense.category
+
+                # Convert Decimal128 to float
+                amount = float(expense.amount.to_decimal())
+
+                if category in category_totals:
+                    category_totals[category] += amount
+                else:
+                    category_totals[category] = amount
+
+            # Prepare the response data
+            response_data = [{'category': key, 'total': value} for key, value in category_totals.items()]
+
+            return Response(response_data, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
