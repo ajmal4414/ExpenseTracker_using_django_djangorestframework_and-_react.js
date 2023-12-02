@@ -1,0 +1,15 @@
+#.gitignore
+.env
+.node_modules
+
+.venv
+.db
+.djongo
+.requirements.txt
+__pycache__
+
+main
+*.pyc
+*.pyo
+*.pyd
+.env
