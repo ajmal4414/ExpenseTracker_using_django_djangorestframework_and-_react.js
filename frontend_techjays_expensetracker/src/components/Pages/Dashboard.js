@@ -4,10 +4,6 @@ import GooglePieChart from '../Charts/PieChart';
 import GoogleBarChart from '../Charts/GoogleBarChart'
 import Table from '../Tables/Table';
 
-
-
-
-
 const Container = styled.div`
 width: 100%;
 height: inherit;
