@@ -108,8 +108,6 @@ const ReportsPage = () => {
         />
       </ChartContainer>
 
-   
-
       {/* Add the option to download or print the report here */}
       <ButtonContainer>
         <button onClick={handleGeneratePDF}>Download PDF</button>
